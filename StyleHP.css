@@ -1,0 +1,118 @@
+*{
+  margin:0 ;
+  padding: 0;
+  font-family: sans-serif;
+}
+.body{
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75),rgba(0, 0, 0, 0.75)),url(https://www.codewithrandom.com/wp-content/uploads/2022/11/15-Bootstrap-login-forms32.png);
+  background-size: cover;
+  background-position: center;
+}
+.banner{
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.035);
+  z-index: 100;
+}
+
+.navbar{
+  width: 85%;
+  margin: auto;
+  padding: 35px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo{
+  font-size: 32px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  width: 150px;
+  cursor: pointer;
+}
+.navbar ul li{
+  list-style: none;
+  display: inline-block;
+  margin: 0 20px;
+  position: relative;
+}
+
+.navbar ul li a{
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.navbar ul li::after{
+  content: '';
+  height: 3px;
+  width: 0;
+  background: #fff;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  transition: 0.5s;
+
+}
+.navbar ul li:hover::after{
+  width: 100%;
+}
+
+.content{
+  width: 85%;
+  position: absolute;
+  top: 90%;
+  transform: translateY(-80%);
+  text-align: center;
+  color: #fff;
+}
+.content h1{
+  font-size: 50px;
+  margin-top: 80px;
+}
+.content p{
+  margin: 20px auto;
+  font-weight: 100;
+  line-height: 25px;
+}
+.content button{
+  width: 200px;
+  padding: 15px 0 ;
+  text-align: center;
+  margin: 20px 10px;
+  border-radius: 25px;
+  font-weight: bold;
+  border: 2px solid #fff;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  bottom: 20%;
+  font-size: large;
+}
+
+.content span{
+  background: #b5b3b7;
+  height: 100%;
+  width: 0;
+  border-radius: 25px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  transition: 0.5s;
+}
+.content button:hover span{
+    width: 100%;
+}
+.button:hover {
+  border: none;
+}
+
+
