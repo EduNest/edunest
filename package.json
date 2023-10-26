@@ -1,0 +1,14 @@
+{
+  "devDependencies": {
+    "jest": "^28.1.3"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.[jt]s?(x)",
+      "**/?(*.)+(spec|test|signinTest).[tj]s?(x)"
+    ]
+  },
+  "dependencies": {
+    "firebase": "^10.5.1"
+  }
+}
