@@ -5,9 +5,10 @@
   "jest": {
     "testMatch": [
       "**/__tests__/**/*.[jt]s?(x)",
-      "**/?(*.)+(spec|test|signinTest).[tj]s?(x)"
+      "**/?(*.)+(spec|test|unit_test|unit_text).[tj]s?(x)"
     ]
   },
+
   "dependencies": {
     "firebase": "^10.5.1"
   }

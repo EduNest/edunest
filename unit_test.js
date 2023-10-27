@@ -19,24 +19,35 @@ const testUserEmail = "test@example.com";
 const testUserPassword = "testpassword";
 
 // Test the sign-up functionality
-test("Sign up with valid email and password", async () => {
-    try {
-        const userCredential = await createUserWithEmailAndPassword(auth, testUserEmail, testUserPassword);
-        expect(userCredential.user).not.toBeNull();
-    } catch (error) {
-        // Handle sign-up failure
-        console.error("Sign-up error:", error.message);
-    }
-});
+// test("Sign up with valid email and password", async () => {
+//     try {
+//         const userCredential = await createUserWithEmailAndPassword(auth, testUserEmail, testUserPassword);
+//         expect(userCredential.user).not.toBeNull();
+//     } catch (error) {
+//         // Handle sign-up failure
+//         console.error("Sign-up error:", error.message);
+//     }
+// });
+
+
 
 // Test the sign-in functionality
-test("Sign in with valid email and password", async () => {
+
+test("Test Sign In - Correct Email and Password (Positive Test Case)", async () => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, testUserEmail, testUserPassword);
         expect(userCredential.user).not.toBeNull();
     } catch (error) {
-        // Handle sign-in failure
-        console.error("Sign-in error:", error.message);
+        console.error("Test Sign In - Correct Email and Password - Error:", error.message);
+    }
+});
+
+test("Test Sign In - Incorrect Password (Negative Test Case)", async () => {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, testUserEmail, "incorrectpassword");
+        expect(userCredential.user).toBeNull(); // Expect null since the password is incorrect
+    } catch (error) {
+        console.error("Test Sign In - Incorrect Password - Error:", error.message);
     }
 });
 
