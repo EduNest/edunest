@@ -19,15 +19,25 @@ const testUserEmail = "test@example.com";
 const testUserPassword = "testpassword";
 
 // Test the sign-up functionality
-// test("Sign up with valid email and password", async () => {
-//     try {
-//         const userCredential = await createUserWithEmailAndPassword(auth, testUserEmail, testUserPassword);
-//         expect(userCredential.user).not.toBeNull();
-//     } catch (error) {
-//         // Handle sign-up failure
-//         console.error("Sign-up error:", error.message);
-//     }
-// });
+test("Sign up with a new email and password", async () => {
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, testUserEmail, testUserPassword);
+        uniqueUserId = userCredential.user.uid; // Store the user ID for later cleanup
+        expect(userCredential.user).not.toBeNull();
+    } catch (error) {
+        console.error("Sign-up error:", error.message);
+    }
+});
+
+// Add more test cases for other scenarios as needed
+test("Attempt to sign up with an existing email", async () => {
+    try {
+        await createUserWithEmailAndPassword(auth, testUserEmail, "anotherpassword");
+        // The above line should throw an error if the email is already registered
+    } catch (error) {
+        expect(error.code).toEqual("auth/email-already-in-use");
+    }
+});
 
 
 
