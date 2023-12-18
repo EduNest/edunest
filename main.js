@@ -19,16 +19,15 @@ const signUp = () => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((result) => {
             // Signed in 
-            document.write("You are Signed Up")
-            alert("account create sucssefuly")
-            alert("You are Signed up")
+            document.write("You are signed Up")
+            alert("Account created successfully")
             window.location.href = "homepage.html";
             // ...
         })
         .catch((error) => {
             console.log(error.code);
             console.log(error.message)
-            alert("your already have account")
+            alert("Account already exists")
             
             // ..
         });
@@ -42,12 +41,12 @@ const signIn = () => {
     firebase.auth().signInWithEmailAndPassword(email, password)
         .then((result) => {
             // Signed in 
-            alert("You are Signed in")
+            alert("You are signed in")
             window.location.href = "homepage.html";
         })
         .catch((error) => {
             console.log(error.code);
             console.log(error.message)
-            alert("you don't have account ")
+            alert("Incorrect email or password")
         });
 }
