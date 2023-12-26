@@ -63,100 +63,26 @@
   width: 100%;
 }
 
-.content{
+main{
   width: 85%;
+  margin: auto;
+  padding: 100px;
   position: absolute;
-  top: 90%;
-  transform: translateY(-80%);
+  top: 50%;
+  transform: translateY(-50%);
   text-align: center;
   color: #fff;
+  margin-left: auto;
+  margin-right: auto;
 }
-.content h1{
+main h1{
   font-size: 50px;
   margin-top: 80px;
 }
-.content p{
+main p{
   margin: 20px auto;
   font-weight: 100;
   line-height: 25px;
-}
-.content button{
-  width: 200px;
-  padding: 15px 0 ;
-  text-align: center;
-  margin: 20px 10px;
-  border-radius: 25px;
-  font-weight: bold;
-  border: 2px solid #fff;
-  background: transparent;
-  color: #ffffff;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  bottom: 20%;
-}
-
-.content span{
-  background: #b5b3b7;
-  height: 100%;
-  width: 0;
-  border-radius: 25px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: -1;
-  transition: 0.5s;
-}
-.content button:hover span{
-    width: 100%;
-}
-.button:hover {
-  border: none;
-}
-
-
-p{
- color: #fff;
- font-size: 0.9rem;
- display: -webkit-box;
-
- -webkit-box-orient: vertical;
- overflow: hidden;
- text-overflow: ellipsis;
- width: 85%;
- position: absolute;
- top: 70%;
- transform: translateY(-80%);
- text-align: center;
- color: #fff;
- font-size: 25px;
-}
-h1{
-  size: 200px;
-  width: 85%;
-  position: absolute;
-  top: 30%;
-  transform: translateY(-80%);
-  text-align: center;
   color: #fff;
-}
-
-
-.class11 h1{
-  size: 200px;
-  width: 85%;
-  position: absolute;
-  top: 30%;
-  transform: translateY(-80%);
-  text-align: center;
-  color: #fff;
-}
-h2{
-  size: 200px;
-  width: 85%;
-  position: absolute;
-  top: 20%;
-  transform: translateY(-80%);
-  text-align: center;
-  color: #fff;
+  font-size: 25px;
 }
