@@ -1,0 +1,120 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  background-color: #ffffff;
+}
+
+#nav-links {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.navbar a {
+  text-decoration: none;
+}
+
+.logo {
+  width: 20vh;
+  height: auto;
+}
+
+#user-info {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link,
+#log-in,
+#account {
+  display: flex;
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  margin-right: 2em;
+  font-family: "Inter-Medium", Helvetica;
+  font-weight: 500;
+  color: #09a5e999;
+  font-size: 13.1px;
+  letter-spacing: 0.2px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+#user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+#span-redtag-tag {
+  position: relative;
+  left: -2em;
+  top: 0.7em;
+  height: 100%;
+  width: 3em;
+  color: #fff;
+  font-size: 0.75em;
+  text-align: center;
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgb(255, 91, 55) 0.52%,
+    rgb(171, 0, 82) 100%
+  );
+}
+
+#log-in,
+#account {
+  margin-right: 2em;
+  align-items: center;
+  font-size: 17px;
+  font-weight: bolder;
+}
+
+#sign-up-btn,
+#sign-out-btn {
+  align-items: center;
+  background-image: linear-gradient(144deg, #86fffb, #5da5a0 50%, #3972c1);
+  color: #e0fafb;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 17px;
+  font-weight: bolder;
+  justify-content: center;
+  line-height: 1em;
+  width: 6em;
+  height: auto;
+  max-width: 100%;
+  padding: 3px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+#sign-up-btn:active,
+#sign-up-btn:hover,
+#sign-out-btn:active,
+#sign-out-btn:hover {
+  outline: 0;
+}
+
+.underline-effect::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: #333;
+  transition: width 0.4s;
+}
+
+.underline-effect:hover::after {
+  width: 100%;
+}

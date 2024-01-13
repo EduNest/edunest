@@ -1,0 +1,16 @@
+:root {
+  --grey-200: rgba(228, 231, 236, 1);
+  --text-regular-16pm-font-family: "Inter-Regular", Helvetica;
+  --text-regular-16pm-font-weight: 400;
+  --text-regular-16pm-font-size: 1em;
+  --text-regular-16pm-letter-spacing: 0px;
+  --text-regular-16pm-line-height: 1.5em;
+  --text-regular-16pm-font-style: normal;
+  --variable-collection-light-grey-II: rgba(102, 112, 133, 1);
+}
+
+@media (max-width: 600px) {
+  .element {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication page</title>
+    <link rel="stylesheet" href="./css/auth.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <!-- <link rel="stylesheet" href="./css/style.css"> -->
+    <link rel="stylesheet" href="./css/styleguide.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="index.html"
+        ><img src="./img/logo.svg" alt="Logo" class="logo"
+      /></a>
+      <nav id="nav-links">
+        <a href="./courses.html" class="underline-effect nav-link">Courses</a>
+        <a href="#" class="underline-effect nav-link">Assignments</a>
+        <a href="#" class="underline-effect nav-link">Quizzes</a>
+        <a href="#" class="underline-effect nav-link">Discussion<br />board</a>
+        <span id="span-redtag-tag">New</span>
+        <a href="#" class="underline-effect nav-link">Leaderboard</a>
+        <a href="#" class="underline-effect nav-link">Articles</a>
+        <a href="#" class="underline-effect nav-link">Progress</a>
+      </nav>
+      <div id="user-info">
+   
+      </div>
+    </header>
+    <main>
+      <div class="form-structor">
+        <div class="signup">
+          <h2 class="form-title" id="signup"><span>or</span>Sign up</h2>
+          <form class="form-holder" id="signup-form">
+            <input
+              type="text"
+              class="input"
+              name="display-name"
+              id="sign-up-display-name"
+              placeholder="Display name (optional)"
+              autocomplete="nickname"
+            />
+            <input
+              type="text"
+              class="input"
+              name="username"
+              id="sign-up-username"
+              placeholder="Username"
+              autocomplete="username"
+              required
+              pattern="^[A-Za-z0-9_]{4,16}$"
+              title="4-16 alphanumeric characters or underscores"
+            />
+
+            <input
+              type="email"
+              class="input"
+              name="email"
+              id="signup-email"
+              placeholder="Email"
+              autocomplete="email"
+              required
+            />
+            <div class="password-container">
+              <input
+                type="password"
+                class="input"
+                name="password"
+                id="signup-password"
+                placeholder="Password"
+                autocomplete="new-password"
+                required
+                pattern=".{6,}"
+                title="At least 6 characters"
+              />
+              <button
+                type="button"
+                id="toggle-signup-password"
+                title="Show Password"
+              >
+                <span class="fa fa-eye" id="eye-icon-signup"></span>
+              </button>
+            </div>
+            <button class="submit-btn" id="signup-button" type="submit">
+              Sign up
+            </button>
+          </form>
+        </div>
+        <div class="login slide-up">
+          <div class="center">
+            <h2 class="form-title" id="login"><span>or</span>Log in</h2>
+            <form class="form-holder" id="login-form">
+              <input
+                type="email"
+                class="input"
+                name="email"
+                id="login-email"
+                placeholder="Email"
+                autocomplete="email"
+                required
+              />
+              <input
+                type="password"
+                class="input"
+                name="password"
+                id="login-password"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+              />
+              <button
+                type="button"
+                id="toggle-login-password"
+                title="Show Password"
+              >
+                <span class="fa fa-eye" id="eye-icon-login"></span>
+              </button>
+              <div id="auth-options">
+                <a href="#" id="forgot-password">Forgot Password?</a>
+                <div>
+                  <label for="remember-me">
+                    <input type="checkbox" id="remember-me" checked /> Remember
+                    me
+                  </label>
+                </div>
+              </div>
+              <button class="submit-btn" id="login-button" type="submit">
+                Log in
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script type="module">
+    import { initAuth } from "./js/auth.js";
+    import { initStyle } from "./js/auth.js";
+    initStyle();
+    initAuth();
+  </script>
+  <script type="module" src="./js/navbar.js"></script>
+</html>
