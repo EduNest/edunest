@@ -1,49 +1,130 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign up</title>
-    <link rel="stylesheet" href="css/style.css" />
-    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-auth-compat.js"></script>
-    <script src="https://kit.fontawesome.com/392fb3e959.js" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" href="./css/styleguide.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+    />
+    <title>EduNest</title>
   </head>
   <body>
-    <div class="form">
-      <!-- Email  -->
-      <div class="email">
-        <i class="fa-solid fa-envelope"></i>
-        <label for="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Write your email"
-        />
-      </div>
-      <!-- passWord -->
-      <div class="pass">
-        <i class="fa-solid fa-lock"></i>
-        <label for="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="password"
-        />
+    <header class="navbar">
+      <a href="index.html"
+        ><img src="./img/logo.svg" alt="Logo" class="logo"
+      /></a>
+      <nav id="nav-links">
+        <a href="./courses.html" class="underline-effect nav-link">Courses</a>
+        <a href="#" class="underline-effect nav-link">Assignments</a>
+        <a href="#" class="underline-effect nav-link">Quizzes</a>
+        <a href="#" class="underline-effect nav-link">Discussion<br />board</a>
+        <span id="span-redtag-tag">New</span>
+        <a href="#" class="underline-effect nav-link">Leaderboard</a>
+        <a href="#" class="underline-effect nav-link">Articles</a>
+        <a href="#" class="underline-effect nav-link">Progress</a>
+      </nav>
+      <div id="user-info"></div>
+    </header>
+    <main>
+      <div class="hero">
+        <div class="content">
+          <img class="blob" src="./img/blob.svg" alt="Blob Image" />
+          <div class="text-content">
+            <span id="welcome">Welcome to <strong>EduNest</strong></span>
+            <p class="text-wrapper">
+              The ultimate online platform for learning computer science topics.
+              Whether you are a student, or a professional, you will find
+              something useful and interesting here. 🙌
+            </p>
+            <button
+              class="primary-button primary-button-text"
+              id="explore-button"
+            >
+              Explore all courses
+            </button>
+          </div>
+          <img
+            id="blob-container"
+            src="./img/blob-container.svg"
+            alt="Blob Container Image"
+          />
+          <img
+            id="autumn-study-male"
+            src="./img/autumn-study-male.svg"
+            alt="Autumn Study Male Image"
+          />
+        </div>
       </div>
 
-      <!-- Sign Up button -->
-      <button id="submit-btn" onclick="signUp()">Sign Up</button>
-      <!-- Sign In option -->
-      <p>Already have an account?</p>
-      <span><a href="signIn.html">Sign In</a></span>
-    </div>
+      <div class="card">
+        <div class="card-item">
+          <img src="./img/bookshelf.svg" alt="Bookshelf" />
+          <div class="text-content">
+            <p class="card-header">Learning materials!</p>
+            <span class="card-subheader">
+              Expand your knowledge with a vast variety of courses in the domain
+              of computer science.
+            </span>
+          </div>
+        </div>
+        <div class="card-item">
+          <img
+            src="./img/female-student-question.svg"
+            alt="Questioning Student"
+          />
+          <div class="text-content" id="middle-card-text">
+            <p class="card-header">Assignments and quizzes!</p>
+            <span class="card-subheader">
+              Fun and challenging questions that test and improve your knowledge
+              and skills.
+            </span>
+          </div>
+        </div>
+        <div class="card-item">
+          <img
+            src="./img/students-doing-a-guts-pose.svg"
+            alt="Students Doing a Guts Pose"
+          />
+          <div class="text-content">
+            <p class="card-header">Collaboration and competition!</p>
+            <span class="card-subheader">
+              Participate in discussions and competitions with other users.
+            </span>
+          </div>
+        </div>
+      </div>
 
-    <script src="js/main.js"></script>
+      <div class="text-content" id="about">
+        <p class="about-header">About us</p>
+        <p class="about-subheader">
+          We are a group of five students who built EduNest to make learning
+          computer science easy for everyone.
+          <br />
+          Our platform offers a variety of resources. We hope you find EduNest
+          useful and fun to use. 😀
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="frame">
+        <a href="#"><img src="./img/linkedin.svg" /></a>
+        <a href="#"><img src="./img/twitterx.svg" /></a>
+        <a href="#"><img src="./img/instagram.svg" /></a>
+      </div>
+      <div class="links">
+        <a href="#about">About Us</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+      </div>
+      <span id="copyright">EduNest © 2023</span>
+    </footer>
   </body>
+  <script type="module" src="./js/navbar.js"></script>
+  <script src="./js/index.js"></script>
 </html>

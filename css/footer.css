@@ -1,0 +1,35 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 2em;
+  }
+  
+  .frame * {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    width: 54px;
+    /* gap: 15em; */
+    position: relative;
+    flex: 0 0 auto;
+  }
+  
+  .links * {
+    text-decoration: none;
+    color: #333;
+    padding: 2em;
+  }
+  
+  #footer-logo {
+    height: auto;
+    width: 54px;
+  }
+  
+  #copyright {
+    font-weight: bold;
+    font-family: cursive;
+    font-size: large;
+  }
