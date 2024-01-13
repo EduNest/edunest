@@ -8,27 +8,28 @@
 </head>
 <body class="body">
     <div class="banner">
-        <div class="navbar">
+        <nav class="navbar">
             <a href="./signIn.html" class="logo">WhiteBoard</a>
-            <ul>
-                <li><a href="#" onclick="window.location.href = 'homepage.html';" >Home</a></li>
-                <li><a href="#" onclick="window.location.href = 'quiz.html';">Quizzes</a></li>
-                <li><a href="#" onclick="window.location.href = './assignment.html';"">Assignments</a></li>
+            <ul id="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Quizzes</a></li>
+                <li><a href="#">Assignments</a></li>
                 <li><a href="#">Grades</a></li>
-                <li><a href="#" onclick="window.location.href = 'index.html';">Logout</a></li>
+                <li><a href="#">Logout</a></li>
             </ul>
-         
-                <h1>Data Management</h1>
-          
-       <p>Computers manage and structure data in different ways, depending on the type of data and its use. The most common data structures include lists, arrays, and databases. 
+        </nav>
+        <main>
+            <h1>Data Management</h1>
+            <p>Computers manage and structure data in different ways, depending on the type of data and its use. The most common data structures include lists, arrays, and databases. 
 
-        Lists are an easy and efficient way to store ordered collections of data items. Each item in the list has a unique index that allows you to access the item directly. Lists are often used to store data such as names, addresses, and phone numbers.
-        
-        Arrays are similar to lists but are stored in contiguous blocks of memory. This allows for more efficient sequential access to data but can make it more difficult to insert or remove elements from the array. Arrays are commonly used to store data such as images, audio, and video. 
-        Databases are used to store and manage large collections of data. Databases are typically organized into tables made up of rows and columns. Each row in the table represents one record, and each column represents a different attribute of the record. Databases are often used to store data such as customer information, product information, and order information. 
-        Computers use various algorithms to sort, search, and manipulate the data stored in these data structures. For example, a computer may use a binary search algorithm to search for a particular element in a sorted array. Alternatively, computers may use hash table algorithms to quickly access specific records in a database.
-        </p>
+            Lists are an easy and efficient way to store ordered collections of data items. Each item in the list has a unique index that allows you to access the item directly. Lists are often used to store data such as names, addresses, and phone numbers.
+            
+            Arrays are similar to lists but are stored in contiguous blocks of memory. This allows for more efficient sequential access to data but can make it more difficult to insert or remove elements from the array. Arrays are commonly used to store data such as images, audio, and video. 
+            Databases are used to store and manage large collections of data. Databases are typically organized into tables made up of rows and columns. Each row in the table represents one record, and each column represents a different attribute of the record. Databases are often used to store data such as customer information, product information, and order information. 
+            Computers use various algorithms to sort, search, and manipulate the data stored in these data structures. For example, a computer may use a binary search algorithm to search for a particular element in a sorted array. Alternatively, computers may use hash table algorithms to quickly access specific records in a database.
+            </p>
+        </main>
     </div>
-    
+    <script src="../js/app.js"></script>
 </body>
 </html>
