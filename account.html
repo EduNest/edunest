@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Account</title>
+    
+    <link rel="stylesheet" href="./css/styleguide.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/navbar.css" />
+    <link rel="stylesheet" href="./css/account.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <script type="module" src="./js/account.js"></script>
+    <script src="./js/Button.js"></script>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">
+        <img src="./img/logo.svg" alt="Logo" class="logo"/>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="order-1 order-lg-2 mb-3 mb-lg-0">
+          <div id="user-info">
+            <a href="auth.html?form=login" id="log-in">Log in</a>
+            <button id="sign-up-btn" class="btn" onclick="window.location.href ='auth.html?form=signup'">Sign up</button>
+          </div>
+        </div>
+        <div class="order-2 order-lg-1">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="./courses.html">Courses</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="#">Assignments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="#">Quizzes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="./discussion.html">Discussion board</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="#">Leaderboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="#">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="#">Progress</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="container">
+      <div class="background">
+        <blockquote class="blockquote text-center">
+          <p id="quote" class="mb-0"></p>
+          <footer class="blockquote-footer" id="author"></footer>
+        </blockquote>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 order-lg-1 order-2">
+          <div class="card">
+            <div class="card-header">
+              <h2>Personal information</h2>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Username</label>
+                  <input type="text" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                  <label>Email address</label>
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Password</label>
+                  <input type="password" class="form-control" />
+                </div>
+                <div class="col-md-6">
+                  <label>Confirm password</label>
+                  <input type="password" class="form-control" />
+                </div>
+              </div>
+              <button class="btn update mt-3">Update</button>
+              <button class="btn delete mt-3">Delete account</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 order-lg-2 order-1">
+          <div class="card">
+            <img id="avatar" src="./img/avatars/01.png" class="card-img-top" alt="Avatar" />
+            <div class="card-body">
+              <h4 class="card-title" id="display-name"></h4>
+              
+           
+            </div>
+            <div class="avatar-change-container">
+              <img class="avatar-change" src= "./img/avatars/1.png"  onclick="change1()"/>
+              <img class="avatar-change" src= "./img/avatars/2.png"  onclick="change2()"/>
+              <img class="avatar-change" src= "./img/avatars/3.png"  onclick="change3()"/>
+              <img class="avatar-change" src= "./img/avatars/4.png"  onclick="change4()"/>
+              <img class="avatar-change" src= "./img/avatars/01.png" onclick="change5()"/>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Progress</h2>
+              هنا تطلع الشارات (اذا خلص كورس او.. تحدي؟)<br />و احصائيات (مثل كم من الكورسات خلص، وممكن قراف يطلع الدروس بالنسبة لليوم او الي هو) وافكر احط ستريك يومي
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="container-fluid bg-light text-center text-lg-start">
+      <div class="row">
+        <div class="col-12 col-lg-4 py-3 order-2 order-lg-1">
+          <a href="#about">About Us</a> |
+          <a href="#">Privacy Policy</a> |
+          <a href="#">Terms of Use</a>
+        </div>
+        <div class="col-12 col-lg-4 py-3 order-1 order-lg-2">
+          <a href="#"><img src="./img/linkedin.svg" width="30" height="30" /></a>
+          <a href="#"><img src="./img/twitterx.svg" width="30" height="30" /></a>
+          <a href="#"><img src="./img/instagram.svg" width="30" height="30" /></a>
+        </div>
+        <div class="col-12 col-lg-4 py-3 order-3">
+          <span id="copyright">EduNest © 2024</span>
+        </div>
+      </div>
+    </footer>    
+
+    <script type="module" src="./js/navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  </body>
+</html>
