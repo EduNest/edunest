@@ -1,0 +1,240 @@
+body {
+  overflow-x: hidden;
+}
+
+/* Hero section styles */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #f4f4f4;
+  border-radius: 0 0 32px 32px;
+}
+
+/* Card styles */
+
+.card {
+  border: 1px solid #111111;
+  max-width: 800px;
+  margin: 1em auto;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 32px !important;
+  padding: 1em;
+}
+
+.card .card-item img {
+  width: 180px;
+  height: auto;
+}
+
+.hero .text-content {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 3;
+}
+
+.text-content #welcome {
+  position: relative;
+  color: #333333;
+  width: 100%;
+  font-family: Poppins, "Courier New", monospace;
+  font-size: 40px;
+  right: inherit;
+}
+
+.text-content .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 40px;
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  margin-left: 10%;
+  margin-bottom: 1em;
+  font-family: "Poppins-Medium", Helvetica;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 22px;
+  letter-spacing: 0;
+  line-height: 18px;
+  white-space: nowrap;
+  background-color: #333;
+  border-radius: 40px;
+  box-shadow: 8px 12px 0px #111;
+  transition: transform 0.3s ease;
+}
+
+.text-content .btn:active {
+  box-shadow: none;
+  color: #fff !important;
+  background-color: #333 !important;
+  transform: translate(4px, 4px);
+}
+
+.text-content .btn:hover {
+  color: #fff;
+  background-color: #333;
+  cursor: pointer;
+}
+
+#autumn-study-male {
+  position: absolute;
+  bottom: 0;
+  width: clamp(30vh, 65vh, 80vh);
+  right: 10vh;
+  height: auto;
+  overflow: hidden;
+  border-radius: 0 0 32px 32px;
+  z-index: 1;
+}
+
+
+main .text-wrapper {
+  position: relative;
+  width: 50%;
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: 400;
+  color: #252525;
+  font-size: 24px;
+  letter-spacing: 0;
+  line-height: 34px;
+}
+
+.card-header {
+  font-family: "Poppins-Regular", Helvetica;
+  font-weight: bolder;
+  margin: 0;
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0.8em 0 0.8em 0.8em;
+}
+
+#middle-card-text {
+  padding: 0;
+}
+
+#about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 800px;
+  margin: 3em auto;
+  padding: 1em;
+  background-color: #f4f4f4;
+  border-radius: 32px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+}
+.about-header {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 0.4rem;
+}
+
+.about-subheader {
+  font-size: 1.2em;
+  color: #666;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+
+@media (max-width:1200px) {
+  #autumn-study-male{
+  right: 1vh;
+  }
+  .card .card-item img{
+    width: 150px;
+  }
+
+  .text-content{
+    font-size: 90%;
+  }
+}
+
+@media (max-width:992px){
+
+  #autumn-study-male{
+    width: 22em;
+  right: 1vh;
+  }
+
+  .blob{
+    display: inline;
+  }
+  .card .card-item img{
+    width: 80px;
+  }
+
+  .text-content{
+    font-size: 90%;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .blob {
+    display: none;
+  }
+
+
+  .text-content #welcome {
+    font-size: 30px;
+  }
+
+  main .text-wrapper {
+    width: 100%;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .card-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1.5em;
+  }
+
+  .card .card-item img {
+    width: 150px;
+  }
+
+  .text-content {
+    padding: 1em;
+  }
+
+  .hero {
+    display: flex;
+flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  #autumn-study-male {
+    position: relative;
+    bottom: unset;
+    left: 50%;
+    transform:translateX(-50%);
+    width: 80vw;
+
+    height: auto;
+  }
+
+  .hero .text-content {
+    position: relative; 
+    margin-bottom: 1em;
+    text-align: center;
+    right: inherit;
+    top: inherit; 
+  }
+}
+
+

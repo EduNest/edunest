@@ -1,0 +1,104 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f9fa;
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#courses-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  overflow-y: auto;
+  height: 50vh;
+  width: 90%;
+  background-color: #e9ecef;
+  padding: 2em;
+  margin: 2em 0;
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card {
+  margin: 1em;
+  width: 200px; 
+  height: 300px;  
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  padding: 1em;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  object-fit: cover;
+  height: 100px; 
+}
+
+.card h5 {
+  margin-top: 10px;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-width: 100%;
+  height: auto;
+  z-index: 12;
+  display: none;
+  background: #fff;
+  padding: 1em;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+.modal-backdrop {
+  z-index: 11;
+}
+
+.modal-dialog{
+  max-width: 100%;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal .modal-body img {
+  width: 100%;
+  object-fit: cover;
+  height: 200px; 
+}
+
+.modal .modal-body {
+  padding: 1em;
+}
+
+.modal .modal-title {
+  font-size: 1.5em;
+  margin: 0.5em 0;
+}
+
+.modal .modal-body p {
+  margin: 0.5em 0;
+}
+
+.modal .modal-footer button {
+  display: block;
+  margin: 1em auto;
+}
+
+

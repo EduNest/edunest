@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses</title>
+  <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/navbar.css" />
+  <link rel="stylesheet" href="/css/courses.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+</head>
+
+<body>
+  <header class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+      <img src="/img/logo.svg" alt="Logo" class="logo" />
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="order-1 order-lg-2 mb-3 mb-lg-0">
+        <div id="user-info">
+          <% if (user) { %>
+            <a href="/account" id="account">
+              <img src="<%= user.avatar %>" alt="User Avatar" id="user-avatar" style="background-color: <%= user.avatarBackground %>">
+              <%= user.displayName %>
+            </a>
+            <button id="sign-out-btn" class="btn">Sign out</button>
+          <% } else { %>
+            <a href="/auth?form=login" id="log-in">Log in</a>
+            <button id="sign-up-btn" class="btn" onclick="window.location.href ='/auth?form=signup'">Sign up</button>
+          <% } %>
+        </div>
+      </div>
+      <div class="order-2 order-lg-1">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="/courses">Courses</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="#">Assignments</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="#">Quizzes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="/discussion">Discussion board</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="#">Leaderboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="#">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link underline-effect" href="#">Progress</a>
+          </li>
+        </ul>
+      </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div id="courses-container" class="row">
+        <% courses.forEach((course, index)=> { %>
+          <div class="card" data-bs-toggle="modal" data-bs-target="#courseModal<%= index %>">
+            <img src="<%= course.image %>" alt="<%= course.title %>">
+            <h5>
+              <%= course.title %>
+            </h5>
+            <div class="card-info">
+              <%= course.description %>
+            </div>
+          </div>
+
+          <!-- Bootstrap 5 Modal -->
+          <div class="modal fade" id="courseModal<%= index %>" tabindex="-1"
+            aria-labelledby="courseModalLabel<%= index %>" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="courseModalLabel<%= index %>">
+                    <%= course.title %>
+                  </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <img src="<%= course.image %>" alt="<%= course.title %>">
+                  <p>
+                    <%= course.description %>
+                  </p>
+                  <p><small class="text-muted">Created on <%= course.created %></small></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary enroll-btn">Enroll</button>
+                  <button type="button" class="btn btn-primary explore-btn" onClick="window.location.href='/courses/<%= course.title %>';".>Explore</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% }) %>
+      </div>
+    </div>
+
+
+
+
+
+
+
+  </main>
+
+  <footer class="container-fluid bg-light text-center text-lg-start">
+    <div class="row">
+      <div class="col-12 col-lg-4 py-3 text-lg-start text-center order-2 order-lg-1">
+        <a href="/#about">About Us</a> |
+        <a href="#">Privacy Policy</a> |
+        <a href="#">Terms of Use</a>
+      </div>
+      <div class="col-12 col-lg-4 py-3 text-center order-1 order-lg-2">
+        <a href="#"><img src="/img/linkedin.svg" width="30" height="30" /></a>
+        <a href="#"><img src="/img/twitterx.svg" width="30" height="30" /></a>
+        <a href="#"><img src="/img/instagram.svg" width="30" height="30" /></a>
+      </div>
+      <div class="col-12 col-lg-4 py-3 text-lg-end text-center order-3">
+        <span id="copyright">EduNest © 2024</span>
+      </div>
+    </div>
+  </footer>
+  <script src="/js/navbar.js"></script>
+  <script src="/js/courses.js"></script>
+
+  <% if (user && user.role === 'admin') { %>
+    <script>
+      const createCourseBtn = document.createElement("button");
+      createCourseBtn.id = "create-course-btn";
+      createCourseBtn.classList.add("btn", "btn-primary");
+      createCourseBtn.textContent = "Create Course";
+  
+      const btnContainer = document.createElement("div");
+      btnContainer.style.display = "flex";
+      btnContainer.style.justifyContent = "center";
+      btnContainer.appendChild(createCourseBtn);
+  
+      document.querySelector("main").appendChild(btnContainer);
+  
+      const courseModalDiv = document.createElement("div");
+courseModalDiv.id = "createCourseModal"; 
+courseModalDiv.className = "modal fade";
+courseModalDiv.tabIndex = -1;
+courseModalDiv.setAttribute("aria-labelledby", "createCourseModalLabel"); 
+courseModalDiv.setAttribute("aria-hidden", "true");
+
+courseModalDiv.innerHTML = `
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="createCourseModalLabel">Create Course</h5> 
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <form id="courseForm">
+        <div class="mb-3">
+          <label for="courseTitle" class="form-label">Course Title</label>
+          <input type="text" class="form-control" id="courseTitle" required pattern="[A-Za-z0-9 ]+">
+        </div>
+        <div class="mb-3">
+          <label for="courseDescription" class="form-label">Course Description</label>
+          <textarea class="form-control" id="courseDescription" rows="3" required"></textarea>
+        </div>
+        <div class="mb-3">
+          <input type="file" class="form-control" id="courseImage" accept="image/*">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" class="btn btn-primary" id="save-course-btn">Save Course</button>
+    </div>
+  </div>
+</div>
+`;
+
+document.querySelector("body").appendChild(courseModalDiv);
+
+    </script>
+  <% } %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
