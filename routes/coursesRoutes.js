@@ -10,7 +10,6 @@ import { getCourse, getCourses } from "../models/coursesModel.js";
 const coursesRouter = express.Router();
 const upload = multer();
 
-
 coursesRouter.get("/last", async (req, res) => {
   try {
     let courses = await getCourses();
@@ -23,9 +22,8 @@ coursesRouter.get("/last", async (req, res) => {
 });
 coursesRouter.post("/save-course", upload.single("image"), handleCreateCourse);
 
-
 coursesRouter.post("/:courseTitle/chapters/save-chapter", handleCreateChapter);
 
-coursesRouter.get("/:courseTitle", handleGetCourse)
+coursesRouter.get("/:courseTitle", handleGetCourse);
 
 export default coursesRouter;

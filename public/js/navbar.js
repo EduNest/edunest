@@ -1,6 +1,6 @@
 const signOutBtn = document.getElementById("sign-out-btn");
 
-if(signOutBtn) {
+if (signOutBtn) {
   signOutBtn.addEventListener("click", function (e) {
     e.preventDefault();
     fetch("/api/logout", {

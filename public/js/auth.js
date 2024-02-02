@@ -133,7 +133,7 @@ loginForm.addEventListener("submit", function (e) {
     })
     .then((data) => {
       // Store user data in local storage
-      localStorage.setItem('user', JSON.stringify(data.user));
+      localStorage.setItem("user", JSON.stringify(data.user));
       window.location.href = "/"; // Redirect to homepage
     })
     .catch((error) => {

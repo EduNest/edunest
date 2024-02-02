@@ -1,10 +1,6 @@
 import express from "express";
 import path from "path";
 import { auth, db, ref, get } from "../firebaseConfig.js";
-// import {
-//   handleGetCourses,
-//   handleGetCourse,
-// } from "../controllers/coursesController.js";
 import { getCourses, getCourse } from "../models/coursesModel.js";
 const router = express.Router();
 
@@ -73,10 +69,5 @@ router.get("/courses", async (req, res) => {
     res.status(500).send("An error occurred while fetching user data.");
   }
 });
-
-
-
-
-
 
 export default router;
