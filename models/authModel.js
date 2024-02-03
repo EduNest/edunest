@@ -66,7 +66,6 @@ export async function loginUser(email, password, rememberMe) {
     await setPersistence(auth, browserSessionPersistence);
   }
 
-
   return userCredential.user;
 }
 
