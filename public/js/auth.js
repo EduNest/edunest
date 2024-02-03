@@ -14,12 +14,6 @@ window.onload = function () {
   }
 };
 
-// auth.onAuthStateChanged((user) => {
-//   if (user) {
-//     window.location.href = "/";
-//   }
-// });
-
 loginBtn.addEventListener("click", (e) => {
   let parent = e.target.parentNode.parentNode;
   Array.from(e.target.parentNode.parentNode.classList).find((element) => {
@@ -96,6 +90,12 @@ signUpForm.addEventListener("submit", function (e) {
     body: JSON.stringify({ email, password, username, displayName }),
   })
     .then((response) => {
+      if (response.status === 400) {
+        return response.json().then((data) => {
+          alert(data.message);
+          return Promise.reject(data);
+        });
+      }
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -126,6 +126,12 @@ loginForm.addEventListener("submit", function (e) {
     body: JSON.stringify({ email, password, rememberMe }),
   })
     .then((response) => {
+      if (response.status === 400 || response.status === 500) {
+        return response.json().then((data) => {
+          alert(data.message);
+          return Promise.reject(data);
+        });
+      }
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -153,6 +159,12 @@ forgotPassword.addEventListener("click", function (e) {
     body: JSON.stringify({ email }),
   })
     .then((response) => {
+      if (response.status === 400 || response.status === 500) {
+        return response.json().then((data) => {
+          alert(data.message);
+          return Promise.reject(data);
+        });
+      }
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }

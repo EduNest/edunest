@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 function setupCreateCourseButton() {
   createCourseBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    openCourseModal("createCourseModal"); 
+    openCourseModal("createCourseModal");
   });
 }
 
@@ -30,7 +30,6 @@ function setupSaveCourseButton() {
 
 async function saveCourse() {
   const formData = getFormData();
-  const valid = validateCourse(formData);
   if (!validateCourse(formData)) {
     console.error("Validation failed.");
     return;
@@ -77,7 +76,7 @@ function postCourse(formData) {
     })
     .then((response) => {
       const course = response.course;
-      appendCourse(course);
+      appendCourse(course, course.title);
       return course;
     })
     .catch((error) => {
@@ -89,7 +88,7 @@ function validateCourse(formData) {
     alert("Title and description are required.");
     return false;
   }
-  const prohibited = /[\0\/\*\?\&\s.$#[\]]/;
+  const prohibited = /[\0\/\*\?\&.$#[\]]/;
   if (formData.get("title").match(prohibited)) {
     alert("Title contains prohibited characters.");
     return false;
@@ -100,7 +99,6 @@ function validateCourse(formData) {
 function appendCourse(course, index) {
   const coursesContainer = document.getElementById("courses-container");
 
-  // Create course card
   const card = document.createElement("div");
   card.className = "card";
   card.setAttribute("data-bs-toggle", "modal");
@@ -120,7 +118,6 @@ function appendCourse(course, index) {
   cardInfo.textContent = course.description;
   card.appendChild(cardInfo);
 
-  // Create course modal
   const modal = document.createElement("div");
   modal.className = "modal fade";
   modal.id = `courseModal${index}`;
@@ -187,6 +184,7 @@ function appendCourse(course, index) {
   exploreButton.textContent = "Explore";
   exploreButton.setAttribute(
     "onClick",
+
     `window.location.href='/courses/${course.title}';`
   );
   modalFooter.appendChild(exploreButton);

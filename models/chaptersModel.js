@@ -1,6 +1,6 @@
-import { ref, set, db } from "../firebaseConfig.js";
+import { db, ref, set, get } from "../firebaseConfig.js";
 import { fileURLToPath } from "url";
-import { mkdir, writeFile, readFile } from "fs/promises";
+import { mkdir } from "fs/promises";
 import path from "path";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -8,6 +8,20 @@ export async function createChapter(courseTitle, chapter) {
   const chaptersRef = ref(db, `chapters/${courseTitle}/${chapter.title}`);
   await set(chaptersRef, chapter);
   return chapter.title;
+}
+
+export async function getChapterByTitle(courseTitle, chapterTitle) {
+  const chaptersRef = ref(db, `chapters/${courseTitle}`);
+  const snapshot = await get(chaptersRef);
+  if (snapshot.exists()) {
+    const chapters = snapshot.val();
+    const chapter = Object.values(chapters).find(
+      (chapter) => chapter.title.toLowerCase() === chapterTitle.toLowerCase()
+    );
+
+    return chapter;
+  }
+  return null;
 }
 
 export async function createChapterDirectory(courseTitle, chapter) {
@@ -20,14 +34,7 @@ export async function createChapterDirectory(courseTitle, chapter) {
     await mkdir(dirPath, { recursive: true });
     console.log("Directory created successfully!");
 
-    // Create an index.ejs file, using the chapter index page template
-    const htmlContent = await readFile(
-      path.join(__dirname, "../views/courses/chapterTemplate.ejs"),
-      "utf8"
-    );
-    await writeFile(path.join(dirPath, "index.ejs"), htmlContent);
-    console.log("index.ejs created successfully!");
-    return { message: "Course and directories created successfully!" };
+    return { message: "Directory created successfully!" };
   } catch (error) {
     console.error("An error occurred:", error);
     throw error;

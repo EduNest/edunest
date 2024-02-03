@@ -1,1 +1,117 @@
-<!-- TODO: ADD TEMPLATE FOR CHAPTER INDEX PAGE -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduNest</title>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/course.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+  </head>
+  <body>
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">
+        <img src="/img/logo.svg" alt="Logo" class="logo" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="order-1 order-lg-2 mb-3 mb-lg-0">
+          <div id="user-info">
+            <% if (user) { %>
+            <a href="/account" id="account">
+              <img
+                src="<%= user.avatar %>"
+                alt="User Avatar"
+                id="user-avatar"
+                style="background-color: <%= user.avatarBackground%>"
+              />
+              <%= user.displayName %>
+            </a>
+            <button id="sign-out-btn" class="btn">Sign out</button>
+            <% } else { %>
+            <a href="/auth?form=login" id="log-in">Log in</a>
+            <button
+              id="sign-up-btn"
+              class="btn"
+              onclick="window.location.href ='/auth?form=signup'"
+            >
+              Sign up
+            </button>
+            <% } %>
+          </div>
+        </div>
+        <div class="order-2 order-lg-1">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="/courses">Courses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="#">Assignments</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="#">Quizzes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="/discussion"
+                >Discussion board</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="#">Leaderboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="#">Articles</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="#">Progress</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <footer class="container-fluid bg-light text-center text-lg-start">
+      <div class="row">
+        <div
+          class="col-12 col-lg-4 py-3 text-lg-start text-center order-2 order-lg-1"
+        >
+          <a href="#about">About Us</a> | <a href="#">Privacy Policy</a> |
+          <a href="#">Terms of Use</a>
+        </div>
+        <div class="col-12 col-lg-4 py-3 text-center order-1 order-lg-2">
+          <a href="#"><img src="/img/linkedin.svg" width="30" height="30" /></a>
+          <a href="#"><img src="/img/twitterx.svg" width="30" height="30" /></a>
+          <a href="#"
+            ><img src="/img/instagram.svg" width="30" height="30"
+          /></a>
+        </div>
+        <div class="col-12 col-lg-4 py-3 text-lg-end text-center order-3">
+          <span id="copyright">EduNest © 2024</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/navbar.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/js/course.js"></script>
+  </body>
+</html>

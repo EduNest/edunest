@@ -77,17 +77,23 @@ export async function createCourseDirectories(courseTitle) {
     console.log("Directory created successfully!");
 
     // Create an index.ejs file, using the course index page template
-    const htmlContent = await readFile(
+    const courseTemplate = await readFile(
       path.join(__dirname, "../views/courses/courseTemplate.ejs"),
       "utf8"
     );
-    await writeFile(path.join(dirPath, "index.ejs"), htmlContent);
-    console.log("index.ejs created successfully!");
+    await writeFile(path.join(dirPath, "index.ejs"), courseTemplate);
+    console.log("index.ejs for course created successfully!");
 
+    
     // Create a chapters directory inside the course directory
     await mkdir(path.join(dirPath, "chapters"));
     console.log("Chapters directory created successfully!");
-
+    const chapterTemplate = await readFile(
+      path.join(__dirname, "../views/courses/chapterTemplate.ejs"),
+      "utf8"
+    );
+    await writeFile(path.join(dirPath + "/chapters", "index.ejs"), chapterTemplate);
+    console.log("index.ejs for chapter created successfully!");
     return { message: "Course and directories created successfully!" };
   } catch (error) {
     console.error("An error occurred:", error);

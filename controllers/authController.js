@@ -28,11 +28,6 @@ export async function handleLogin(req, res) {
   try {
     const user = await loginUser(email, password, rememberMe);
 
-    // const userRef = ref(db, "userSettings/" + user.uid);
-
-    // await get(userRef).then((snapshot) => {
-    //   const userData = snapshot.val();
-    // })
     res.status(200).json({ message: "User logged in successfully" });
   } catch (error) {
     res.status(400).json({ message: error.message });
