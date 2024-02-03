@@ -52,6 +52,13 @@ export async function handleCreateCourse(req, res) {
     const course = { ...req.body };
     const courseImageFile = req.file;
 
+    const existingCourse = await getCourseByTitle(course.title);
+    if (existingCourse) {
+      res
+        .status(400)
+        .json({ message: "A course with this title already exists." });
+      return;
+    }
     // If an image file is provided, upload it to Firebase storage
     if (courseImageFile) {
       const coursesFolder = storageRef(
@@ -73,21 +80,14 @@ export async function handleCreateCourse(req, res) {
       course.image = "/img/courses/default.png";
     }
 
-    // Add the creation timestamp, but the time is location agnostic! and presentable!
     course.created = new Date().toISOString();
-    const existingCourse = await getCourseByTitle(course.title);
-    if (existingCourse) {
-      res
-        .status(400)
-        .json({ message: "A course with this title already exists." });
-      return;
-    }
+
     const courseId = await createCourse(course);
     const dirResult = await createCourseDirectories(course.title);
     console.log(dirResult.message);
     res
       .status(200)
-      .json({ message: "Course created successfully!", courseId: courseId });
+      .json({ message: "Course created successfully!", course: course });
   } catch (error) {
     console.error("Error:", error);
     res.status(500).send("An error occurred while creating the course.");

@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 function setupCreateCourseButton() {
   createCourseBtn.addEventListener("click", (e) => {
     e.stopPropagation();
-    openCourseModal("createCourseModal"); // Pass the ID of the "Create Course" modal
+    openCourseModal("createCourseModal"); 
   });
 }
 
@@ -30,15 +30,21 @@ function setupSaveCourseButton() {
 
 async function saveCourse() {
   const formData = getFormData();
+  const valid = validateCourse(formData);
+  if (!validateCourse(formData)) {
+    console.error("Validation failed.");
+    return;
+  }
   try {
     const data = await postCourse(formData);
-    console.log(data);
-    const courseHtml = await getLastCourse();
-    appendCourse(courseHtml);
+    console.log("Course saved:", data);
     document.getElementById("courseForm").reset();
-    courseModal.hide();
+    if (courseModal) {
+      courseModal.hide();
+    }
   } catch (error) {
     console.error("Error:", error);
+    alert("There was an error saving the course. Please try again.");
   }
 }
 
@@ -56,18 +62,137 @@ function getFormData() {
 }
 
 function postCourse(formData) {
-  return fetch("/courses/save-course", {
-    method: "POST",
-    body: formData,
-  }).then((response) => response.json());
+  return fetch("/courses/save-course", { method: "POST", body: formData })
+    .then((response) => {
+      if (response.status === 400 || response.status === 500) {
+        return response.json().then((data) => {
+          alert(data.message);
+          return Promise.reject(data);
+        });
+      }
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((response) => {
+      const course = response.course;
+      appendCourse(course);
+      return course;
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+function validateCourse(formData) {
+  if (!formData.get("title").trim() || !formData.get("description").trim()) {
+    alert("Title and description are required.");
+    return false;
+  }
+  const prohibited = /[\0\/\*\?\&\s.$#[\]]/;
+  if (formData.get("title").match(prohibited)) {
+    alert("Title contains prohibited characters.");
+    return false;
+  }
+  return true;
 }
 
-function getLastCourse() {
-  return fetch("/courses/last").then((response) => response.text());
-}
+function appendCourse(course, index) {
+  const coursesContainer = document.getElementById("courses-container");
 
-function appendCourse(courseHtml) {
-  document.getElementById("courses-container").innerHTML += courseHtml;
+  // Create course card
+  const card = document.createElement("div");
+  card.className = "card";
+  card.setAttribute("data-bs-toggle", "modal");
+  card.setAttribute("data-bs-target", `#courseModal${index}`);
+
+  const img = document.createElement("img");
+  img.src = course.image;
+  img.alt = course.title;
+  card.appendChild(img);
+
+  const h5 = document.createElement("h5");
+  h5.textContent = course.title;
+  card.appendChild(h5);
+
+  const cardInfo = document.createElement("div");
+  cardInfo.className = "card-info";
+  cardInfo.textContent = course.description;
+  card.appendChild(cardInfo);
+
+  // Create course modal
+  const modal = document.createElement("div");
+  modal.className = "modal fade";
+  modal.id = `courseModal${index}`;
+  modal.setAttribute("tabindex", "-1");
+  modal.setAttribute("aria-labelledby", `courseModalLabel${index}`);
+  modal.setAttribute("aria-hidden", "true");
+
+  const modalDialog = document.createElement("div");
+  modalDialog.className = "modal-dialog";
+  modal.appendChild(modalDialog);
+
+  const modalContent = document.createElement("div");
+  modalContent.className = "modal-content";
+  modalDialog.appendChild(modalContent);
+
+  // Modal header
+  const modalHeader = document.createElement("div");
+  modalHeader.className = "modal-header";
+  modalContent.appendChild(modalHeader);
+
+  const modalTitle = document.createElement("h5");
+  modalTitle.className = "modal-title";
+  modalTitle.id = `courseModalLabel${index}`;
+  modalTitle.textContent = course.title;
+  modalHeader.appendChild(modalTitle);
+
+  const closeButton = document.createElement("button");
+  closeButton.className = "btn-close";
+  closeButton.setAttribute("data-bs-dismiss", "modal");
+  closeButton.setAttribute("aria-label", "Close");
+  modalHeader.appendChild(closeButton);
+
+  // Modal body
+  const modalBody = document.createElement("div");
+  modalBody.className = "modal-body";
+  modalContent.appendChild(modalBody);
+
+  const modalImg = document.createElement("img");
+  modalImg.src = course.image;
+  modalImg.alt = course.title;
+  modalBody.appendChild(modalImg);
+
+  const p = document.createElement("p");
+  p.textContent = course.description;
+  modalBody.appendChild(p);
+
+  const small = document.createElement("small");
+  small.className = "text-muted";
+  small.textContent = "Created on " + course.created;
+  modalBody.appendChild(small);
+
+  // Modal footer
+  const modalFooter = document.createElement("div");
+  modalFooter.className = "modal-footer";
+  modalContent.appendChild(modalFooter);
+
+  const enrollButton = document.createElement("button");
+  enrollButton.className = "btn btn-primary enroll-btn";
+  enrollButton.textContent = "Enroll";
+  modalFooter.appendChild(enrollButton);
+
+  const exploreButton = document.createElement("button");
+  exploreButton.className = "btn btn-primary explore-btn";
+  exploreButton.textContent = "Explore";
+  exploreButton.setAttribute(
+    "onClick",
+    `window.location.href='/courses/${course.title}';`
+  );
+  modalFooter.appendChild(exploreButton);
+
+  coursesContainer.appendChild(card);
+  coursesContainer.appendChild(modal);
 }
 
 function closeCourseModal(modalId) {

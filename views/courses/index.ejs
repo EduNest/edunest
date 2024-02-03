@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduNest | ${courseTitle}</title>
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/navbar.css" />
+    <link rel="stylesheet" href="/css/course.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+  </head>
+  <body>
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">
+        <img src="/img/logo.svg" alt="Logo" class="logo" />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="order-1 order-lg-2 mb-3 mb-lg-0">
+          <div id="user-info">
+            <% if (user) { %>
+            <a href="/account" id="account">
+              <img
+                src="<%= user.avatar %>"
+                alt="User Avatar"
+                id="user-avatar"
+                style="background-color: <%= user.avatarBackground%>"
+              />
+              <%= user.displayName %>
+            </a>
+            <button id="sign-out-btn" class="btn">Sign out</button>
+            <% } else { %>
+            <a href="/auth?form=login" id="log-in">Log in</a>
+            <button
+              id="sign-up-btn"
+              class="btn"
+              onclick="window.location.href ='/auth?form=signup'"
+            >
+              Sign up
+            </button>
+            <% } %>
+          </div>
+        </div>
+        <div class="order-2 order-lg-1">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="/courses">Courses</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="#">Assignments</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="#">Quizzes</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="/discussion"
+                >Discussion board</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="#">Leaderboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="#">Articles</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link underline-effect" href="#">Progress</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <main class="container my-5 course-content">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="d-flex justify-content-center">
+              <img
+                id="course-image"
+                class="card-img-top course-image"
+                src="<%= course.image %>"
+                alt="Course Image"
+              />
+            </div>
+            <div class="card-body text-left">
+              <h1 id="course-title" class="text-center"><%= course.title %></h1>
+              <hr />
+              <p id="course-description"><%= course.description %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div id="chapters-container">
+            <% if (chapters) { %>
+            <h2>Chapters:</h2>
+            <% chapters.forEach((chapter, index) => { %>
+            <div class="card mb-3" id="chapter-<%= index %>">
+              <div class="card-body">
+                <h5 class="card-title chapter-title"><%= chapter.title %></h5>
+                <hr />
+                <% if (chapter.lessons) { %>
+                <div id="lessons-container">
+                  <% chapter.lessons.forEach((lesson, index) => { %>
+                  <p class="card-text lesson-title"><%= lesson.title %></p>
+                  <% }) %>
+                </div>
+                <% } else { %>
+                <p class="card-text">No lessons available for this chapter.</p>
+                <% } %> <% if (user && user.role === 'admin') { %>
+                <button
+                  id="create-lesson-btn-<%= index %>"
+                  class="btn btn-primary"
+                >
+                  Create Lesson
+                </button>
+                <div
+                  class="modal fade"
+                  id="lessonModal-<%= index %>"
+                  tabindex="-1"
+                  aria-labelledby="lessonModalLabel-<%= index %>"
+                  aria-hidden="true"
+                >
+                  <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5
+                          class="modal-title"
+                          id="lessonModalLabel-<%= index %>"
+                        >
+                          Create Lesson
+                        </h5>
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="modal-body">
+                        <form id="lessonForm-<%= index %>">
+                          <div class="mb-3">
+                            <label
+                              for="lessonTitle-<%= index %>"
+                              class="form-label"
+                              >Lesson Title</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="lessonTitle-<%= index %>"
+                              required
+                              pattern="[A-Za-z0-9 ]+"
+                            />
+                          </div>
+                          <div class="mb-3">
+                            <label
+                              for="lessonContent-<%= index %>"
+                              class="form-label"
+                              >Lesson Content</label
+                            >
+                            <textarea
+                              class="form-control"
+                              id="lessonContent-<%= index %>"
+                              rows="10"
+                              required
+                            ></textarea>
+                          </div>
+                          <div class="mb-3">
+                            <label
+                              for="lessonPreview-<%= index %>"
+                              class="form-label"
+                              >Lesson Preview</label
+                            >
+                            <div
+                              id="lessonPreview-<%= index %>"
+                              class="border p-2"
+                            ></div>
+                          </div>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-secondary"
+                          data-bs-dismiss="modal"
+                        >
+                          Close
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          id="previewButton-<%= index %>"
+                        >
+                          Preview
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          id="saveLessonButton-<%= index %>"
+                        >
+                          Save Lesson
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% } %>
+              </div>
+            </div>
+            <% }) %> <% } else { %>
+            <p>No chapters available for this course.</p>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="container-fluid bg-light text-center text-lg-start">
+      <div class="row">
+        <div
+          class="col-12 col-lg-4 py-3 text-lg-start text-center order-2 order-lg-1"
+        >
+          <a href="#about">About Us</a> | <a href="#">Privacy Policy</a> |
+          <a href="#">Terms of Use</a>
+        </div>
+        <div class="col-12 col-lg-4 py-3 text-center order-1 order-lg-2">
+          <a href="#"><img src="/img/linkedin.svg" width="30" height="30" /></a>
+          <a href="#"><img src="/img/twitterx.svg" width="30" height="30" /></a>
+          <a href="#"
+            ><img src="/img/instagram.svg" width="30" height="30"
+          /></a>
+        </div>
+        <div class="col-12 col-lg-4 py-3 text-lg-end text-center order-3">
+          <span id="copyright">EduNest © 2024</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="/js/navbar.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <% if (user && user.role === 'admin') { %>
+    <script>
+      const createChapterBtn = document.createElement("button");
+      createChapterBtn.id = `create-chapter-btn`;
+      createChapterBtn.classList.add("btn", "btn-primary");
+      createChapterBtn.textContent = "Create Chapter";
+
+      const btnContainer = document.createElement("div");
+      btnContainer.style.display = "flex";
+      btnContainer.style.justifyContent = "center";
+      btnContainer.appendChild(createChapterBtn);
+
+      document.querySelector("main").appendChild(btnContainer);
+      const chapterModalDiv = document.createElement("div");
+      chapterModalDiv.id = "chapterModal";
+      chapterModalDiv.className = "modal fade";
+      chapterModalDiv.tabIndex = -1;
+      chapterModalDiv.setAttribute("aria-labelledby", "chapterModalLabel");
+      chapterModalDiv.setAttribute("aria-hidden", "true");
+
+      // Add the modal HTML
+      chapterModalDiv.innerHTML = `
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="chapterModalLabel">Create Chapter</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form id="chapterForm">
+                      <div class="mb-3">
+                        <label for="chapterTitle" class="form-label">Chapter Title</label>
+                        <input type="text" class="form-control" id="chapterTitle" required pattern="[A-Za-z0-9 ]+">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="save-chapter-btn">Save Chapter</button>
+                  </div>
+                </div>
+              </div>
+            `;
+
+      // Add the modal to the body
+      document.body.appendChild(chapterModalDiv);
+    </script>
+    <% } %>
+    <script src="/js/course.js"></script>
+  </body>
+</html>

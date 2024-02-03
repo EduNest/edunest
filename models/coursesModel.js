@@ -62,7 +62,7 @@ export async function getCourseByTitle(title) {
   if (snapshot.exists()) {
     const courses = snapshot.val();
     const course = Object.values(courses).find(
-      (course) => course.title === title
+      (course) => course.title.toLowerCase() === title.toLowerCase()
     );
 
     return course;

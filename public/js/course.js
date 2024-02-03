@@ -33,7 +33,6 @@ function getCourseTitleFromPath(path) {
 }
 
 function setupCreateChapterButton(createChapterBtn) {
-  console.log("Working!");
   createChapterBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     openChapterModal("chapterModal");
@@ -57,7 +56,6 @@ async function saveChapter() {
   // const formData = getChapterFormData();
   try {
     const data = await postChapter();
-    console.log(data);
     const chapterHtml = await getLastChapter();
     appendChapter(chapterHtml);
     document.getElementById("chapterForm").reset();
@@ -69,7 +67,6 @@ async function saveChapter() {
 
 function postChapter() {
   const courseTitle = getCourseTitleFromPath(window.location.pathname);
-  console.log("title" + courseTitle);
   const chapterTitle = document.getElementById("chapterTitle").value;
   return fetch(`/courses/${courseTitle}/chapters/save-chapter`, {
     method: "POST",
@@ -82,10 +79,6 @@ function postChapter() {
     .catch((error) => {
       console.error("Error during fetch:", error);
     });
-}
-
-function getLastChapter() {
-  return fetch("/chapters/last").then((response) => response.text());
 }
 
 function appendChapter(chapterHtml) {
