@@ -18,13 +18,13 @@ body {
   flex-wrap: wrap;
   justify-content: space-around;
   overflow-y: auto;
-  height: 50vh;
-  width: 90%;
+  height: 57vh;
+  width: 100%;
   background-color: #e9ecef;
   padding: 2em;
   margin: 2em 0;
-  border-radius: 15px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
 }
 
 .card {
@@ -37,16 +37,26 @@ body {
   padding: 1em;
   box-sizing: border-box;
   cursor: pointer;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
+  font-family: 'Almarai', sans-serif;
+  font-family: 'Varela Round', sans-serif;
 }
 
 .card img {
   width: 100%;
   object-fit: cover;
   height: 100px; 
-}
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
 
+}
+.Course-inside-img{
+  border-radius: 5px;
+  box-shadow: 0 3px 7px rgba(0,0,0,0.19), 0 3px 3px rgba(0,0,0,0.23);
+}
 .card h5 {
   margin-top: 10px;
+  font-weight: bold;
 }
 
 .modal {
@@ -89,16 +99,66 @@ body {
 
 .modal .modal-title {
   font-size: 1.5em;
-  margin: 0.5em 0;
+  margin: 0.7em 0;
+  font-family: 'Almarai', sans-serif;
+  font-family: 'Varela Round', sans-serif;
+  font-weight: bold;
 }
 
 .modal .modal-body p {
   margin: 0.5em 0;
+  font-family: 'Almarai', sans-serif;
+  font-family: 'Varela Round', sans-serif;
+
 }
 
 .modal .modal-footer button {
   display: block;
   margin: 1em auto;
+}
+/* inside the course */
+/* Define a breakpoint for small screens (max-width: 600px) */
+@media screen and (max-width: 600px) {
+  /* Reduce the width of the modal to 80% */
+  .modal {
+    width: 80%;
+  }
+  /* Reduce the font size of the modal title and footer */
+  .modal .modal-title, .modal .modal-footer {
+    font-size: 1.2em;
+  }
+  /* Reduce the padding of the modal body */
+  .modal .modal-body {
+    padding: 0.5em;
+  }
+  /* Reduce the height of the modal image */
+  .modal .modal-body img {
+    height: 150px;
+  }
+  /* Center the explore button */
+  .modal .modal-footer button {
+    margin: 0.5em auto;
+  }
+}
+
+
+/* The sroll bar design*/
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(102, 102, 102);
+  border-radius: 10px;
 }
 
 

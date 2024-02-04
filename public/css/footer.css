@@ -8,4 +8,14 @@ footer a {
   font-weight: bold;
   font-family: cursive;
   font-size: large;
+
 }
+.footer-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: gray;
+    text-align: center;
+  }
+  
